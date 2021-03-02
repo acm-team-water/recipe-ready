@@ -2,6 +2,7 @@ import React from 'react';
 import './style.css';
 import NavBar from  '../components/NavBar';
 import SearchBar from '../components/SearchBar';
+import InventoryTable from '../components/InventoryTable'
 
 const Inventory = () => {
     return (
@@ -15,6 +16,9 @@ const Inventory = () => {
             </div>
             <div>
                 <SearchBar />
+            </div>
+            <div>
+                <InventoryTable />
             </div>
         </div>
     );

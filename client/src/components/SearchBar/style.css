@@ -22,11 +22,10 @@ button {
     padding-left: 15px;
     padding-right: 15px;
     font-size: 18px;
-    margin-top: 8px;
 }
 
 #searchbutton {
-    background-color: #E5E5E5;
+    background-color: #F0F0F0;
     border-left: none;
     color: black;
     border-top-right-radius: 20px;
