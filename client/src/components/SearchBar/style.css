@@ -1,0 +1,33 @@
+input[type="text"] {
+    font-size: 18px;
+    padding-left: 12px;
+}
+
+#searchbar {
+    height: 30px;
+    width: 40%;
+    margin-top: 8px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border: 1px solid black;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+button {
+    height: 36px;
+    background-color: #58A187;
+    color: white;
+    border: 1px solid black;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 18px;
+}
+
+#searchbutton {
+    background-color: #F0F0F0;
+    border-left: none;
+    color: black;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}

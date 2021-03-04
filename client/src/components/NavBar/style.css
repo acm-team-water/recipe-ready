@@ -1,0 +1,28 @@
+#navbar {
+    background-color: #58A187;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    color: white;
+    margin-left: 28px;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.nav-buttons {
+    color: white;
+    font-size: 18px;
+    margin-right: 28px;
+    text-decoration: none;
+}
+
+a {
+    padding-left: 40px;
+    padding-bottom: 40px;
+}

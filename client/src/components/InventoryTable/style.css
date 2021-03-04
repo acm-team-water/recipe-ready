@@ -1,0 +1,47 @@
+#inventorytable {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    width: 60%;
+    border-spacing: 0;
+    border: 1px solid darkgray;
+    font-size: 18px;
+}
+
+th {
+    background-color: #58A187;
+    color: white;
+    border: 1px solid darkgray;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: left;
+    padding-left: 10px;
+    
+}
+
+td {
+    border: 1px solid darkgray;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+tr:nth-child(even) {
+    background-color: #F0F0F0;
+}
+
+#name {
+    width: 35%;
+}
+
+
+#unit, #weight {
+    width: 20%;
+}
+
+#action {
+    padding-left: 0;
+    text-align: center;
+    width: 25%;
+}
