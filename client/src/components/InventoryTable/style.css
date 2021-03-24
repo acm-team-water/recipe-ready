@@ -19,6 +19,44 @@ th {
     
 }
 
+th#id {
+    width: 5%;
+}
+
+th#item-name {
+    width: 30%;
+}
+
+
+th#unit, th#weight {
+    width: 20%;
+}
+
+th#action {
+    width: 25%;
+}
+
+#edit {
+    background-color: #58A187;
+    color: white;
+    margin-right: 5%;
+    width: 40%;
+    padding: 0;
+    border-radius: 10px;
+    font-size: 16px;
+    height: 30px;
+}
+
+#delete {
+    background-color: #D65D5D;
+    color: white;
+    width: 40%;
+    padding: 0;
+    border-radius: 10px;
+    font-size: 16px;
+    height: 30px;
+}
+
 td {
     border: 1px solid darkgray;
     padding-top: 8px;
@@ -31,17 +69,50 @@ tr:nth-child(even) {
     background-color: #F0F0F0;
 }
 
-#name {
-    width: 35%;
+td#id {
+    width: 5%;
+}
+
+td#item-name {
+    width: 30%;
 }
 
 
-#unit, #weight {
+td#unit, td#weight {
     width: 20%;
 }
 
-#action {
+td#action {
     padding-left: 0;
     text-align: center;
     width: 25%;
+}
+
+.edit-item h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+}
+
+.edit-item label {
+    font-size: 20px;
+    margin-left: 30%;
+    display: block;
+    text-align: left;
+}
+
+.edit-item input[type="text"] {
+    font-size: 20px;
+    border-radius: 5px;
+    border: solid 1px black;
+    margin-bottom: 30px;
+    width: 40%;
+}
+
+#popup-edit {
+    border-radius: 20px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }

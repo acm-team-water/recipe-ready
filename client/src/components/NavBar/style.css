@@ -16,13 +16,13 @@ h2 {
 }
 
 .nav-buttons {
-    color: white;
     font-size: 18px;
     margin-right: 28px;
-    text-decoration: none;
 }
 
 a {
     padding-left: 40px;
     padding-bottom: 40px;
+    text-decoration: none;
+    color: white;
 }

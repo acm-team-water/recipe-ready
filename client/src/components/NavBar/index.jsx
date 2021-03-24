@@ -8,8 +8,8 @@ const NavBar = () => {
                 <h2>Recipe Ready</h2>
             </div>
             <div className="nav-buttons">
-                <a>Inventory</a>
-                <a>Recipes</a>
+                <a href="/inventory">Inventory</a>
+                <a href="/recipe">Recipes</a>
                 <a>Log Out</a>
             </div>
         </div>

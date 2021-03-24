@@ -1,25 +1,91 @@
-import React from 'react';
-import InventoryItem from '../InventoryItem';
+import React, { useState } from 'react';
+import PopUp from '../PopUp';
 import './style.css';
 
-const InventoryTable = () => {
+const InventoryTable = (props) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const togglePopUp = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const [newItemName, setNewItemName] = useState('');
+    const [newUnit, setNewUnit] = useState('');
+    const [newWeight, setNewWeight] = useState('');
+
+    const handleNewItemNameChange = (e) => {
+        setNewItemName(e.target.value);
+    };
+
+    const handleNewUnitChange = (e) => {
+        setNewUnit(e.target.value);
+    };
+
+    const handleNewWeightChange = (e) => {
+        setNewWeight(e.target.value);
+    };
+
+    const onUpdate = (key) => {
+        const updatedData = props.items.map((item, i) => i === key ? {
+            itemName: newItemName,
+            unit: newUnit,
+            weight: newWeight,
+        }: item);
+        props.handleItems(updatedData);
+    };
+
+    const editItem = (key) => (e) => {
+        e.preventDefault();
+
+        onUpdate(key);
+        togglePopUp();
+    };
+
+    const deleteItem = (key) => {
+        let data = props.items.filter((item, i) => i !== key)
+        props.handleItems(data);
+    };
+
     return(
         <div>
             <table id="inventorytable">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Units</th>
-                        <th>Weight (g)</th>
-                        <th>Action</th>
+                        <th id="id">ID</th>
+                        <th id="item-name">Name</th>
+                        <th id="unit">Units</th>
+                        <th id="weight">Weight (g)</th>
+                        <th id="action">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <InventoryItem name="tomato" unit="3" weight="null"/>
-                    <InventoryItem name="garlic" unit="5" weight="null"/>
-                    <InventoryItem name="sugar" unit="null" weight="200"/>
-                    <InventoryItem name="orange" unit="2" weight="null"/>
-                    <InventoryItem name="cinnamon" unit="null" weight="10"/>
+                    {props.items.map((item, key) => (
+                        <tr key={key}>
+                            <td id="id">{key}</td>
+                            <td id="item-name">{item.itemName}</td>
+                            <td id="unit">{item.unit}</td>
+                            <td id="weight">{item.weight}</td>
+                            <td id="action">
+                                <button type="button" id="edit" onClick={togglePopUp}>Edit</button>
+                                {isOpen && <PopUp 
+                                    content = {<>
+                                        <form className="edit-item" onSubmit={() => {editItem(key)}}>
+                                            <h2>Edit Inventory</h2>
+                                            <label htmlFor="item-name">Item Name:</label><br />
+                                            <input type="text" id="item-name" name="item-name" onChange={handleNewItemNameChange} value={newItemName}></input><br />
+                                            <label htmlFor="unit">Quantity (units):</label><br />
+                                            <input type="text" id="unit" name="unit" onChange={handleNewUnitChange} value={newUnit}></input><br />
+                                            <label htmlFor="weight">Weight (g):</label><br />
+                                            <input type="text" id="weight" name="weight" onChange={handleNewWeightChange} value={newWeight}></input>
+                                            <button type="submit" value="Submit" id="popup-edit">Update</button>
+                                        </form>
+                                    </>}
+                                    handleClose = {togglePopUp}
+                                />}
+                                <button type="button" id="delete" onClick={() => deleteItem(key)}>Delete</button>
+                            </td>
+                        </tr> 
+                    ))}                   
                 </tbody>
             </table>
         </div>
