@@ -3,7 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 const invSchema = new mongoose.Schema({
-  name: String
+  name: String,
+  units: Number,
+  weight: Number
 });
 
 const Item = mongoose.model('Inventory', invSchema);
@@ -11,16 +13,16 @@ const Item = mongoose.model('Inventory', invSchema);
 // GET ALL
 router.get('/', function (req, res) {
   Item.find({}, function (err, docs) {
-    if (err) return res.send(err);
-    res.send(docs);
+    if (err) return res.json({ error: err })
+    res.json({ error: null, items: docs });
   });
 })
 
 // GET ONE
 router.get('/:id', function (req, res) {
   Item.findById(req.params.id, function (err, doc) {
-    if (err) return res.send(err);
-    res.send(doc);
+    if (err) return res.json({ error: err })
+    res.json({ error: null, item: doc });
   });
 })
 
@@ -28,24 +30,24 @@ router.get('/:id', function (req, res) {
 router.post('/', function (req, res) {
   const newItem = new Item(req.body);
   newItem.save( function (err, newItem) {
-    if (err) return res.send(err);
+    if (err) return res.json({ error: err })
   });
-  res.send("easily done");
+  res.json({ error: null, item: newItem });
 });
 
-// PUT
+// PUT - return past or present obj?
 router.put('/:id', function (req, res) {
   Item.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
-    if (err) return res.send(err);
-    res.send("easily done");
+    if (err) return res.json({ error: err })
+    res.json({ error: null, item: result });
   });
 })
 
 // DEL
 router.delete('/:id', function (req, res) {
   Item.findByIdAndDelete(req.params.id, function (err) {
-    if (err) return res.send(err);
-    res.send("Successful deletion");
+    if (err) return res.json({ error: err })
+    res.json({ error: null })
   });
 })
 module.exports = router;
