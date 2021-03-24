@@ -12,6 +12,7 @@ const InventoryTable = (props) => {
     const [newItemName, setNewItemName] = useState('');
     const [newUnit, setNewUnit] = useState('');
     const [newWeight, setNewWeight] = useState('');
+    const [currentEditedItemId, setCurrentEditedItemId] = useState(0);
 
     const handleNewItemNameChange = (e) => {
         setNewItemName(e.target.value);
@@ -25,8 +26,8 @@ const InventoryTable = (props) => {
         setNewWeight(e.target.value);
     };
 
-    const onUpdate = (key) => {
-        const updatedData = props.items.map((item, i) => i === key ? {
+    const onUpdate = () => {
+        const updatedData = props.items.map((item, i) => i === currentEditedItemId ? {
             itemName: newItemName,
             unit: newUnit,
             weight: newWeight,
@@ -34,10 +35,17 @@ const InventoryTable = (props) => {
         props.handleItems(updatedData);
     };
 
-    const editItem = (key) => (e) => {
-        e.preventDefault();
+    const openEditPopup = (item, key) => {
+        setNewItemName(item.itemName);
+        setNewWeight(item.weight);
+        setNewUnit(item.unit);
+        setCurrentEditedItemId(key);
+        togglePopUp();
+    }
 
-        onUpdate(key);
+    const editItem = (e) => {
+        e.preventDefault();
+        onUpdate();
         togglePopUp();
     };
 
@@ -66,10 +74,10 @@ const InventoryTable = (props) => {
                             <td id="unit">{item.unit}</td>
                             <td id="weight">{item.weight}</td>
                             <td id="action">
-                                <button type="button" id="edit" onClick={togglePopUp}>Edit</button>
+                                <button type="button" id="edit" onClick={() => openEditPopup(item, key)}>Edit</button>
                                 {isOpen && <PopUp 
                                     content = {<>
-                                        <form className="edit-item" onSubmit={() => {editItem(key)}}>
+                                        <form className="edit-item" onSubmit={(event) => {editItem(event)}}>
                                             <h2>Edit Inventory</h2>
                                             <label htmlFor="item-name">Item Name:</label><br />
                                             <input type="text" id="item-name" name="item-name" onChange={handleNewItemNameChange} value={newItemName}></input><br />
