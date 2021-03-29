@@ -31,11 +31,11 @@ router.post('/', function (req, res) {
   const newItem = new Item(req.body);
   newItem.save( function (err, newItem) {
     if (err) return res.json({ error: err })
+    res.json({ error: null, item: newItem });
   });
-  res.json({ error: null, item: newItem });
 });
 
-// PUT - return past or present obj?
+// PUT
 router.put('/:id', function (req, res) {
   Item.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
     if (err) return res.json({ error: err })
