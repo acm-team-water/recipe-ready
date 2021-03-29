@@ -1,7 +1,12 @@
+.invtable {
+    max-height: 400px;
+    overflow: scroll;
+    margin-top: 40px;
+}
+
 #inventorytable {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 40px;
     width: 60%;
     border-spacing: 0;
     border: 1px solid darkgray;
@@ -16,7 +21,8 @@ th {
     padding-bottom: 8px;
     text-align: left;
     padding-left: 10px;
-    
+    position: sticky;
+    top: 0;
 }
 
 th#id {
@@ -57,7 +63,7 @@ th#action {
     height: 30px;
 }
 
-td {
+.invtable td {
     border: 1px solid darkgray;
     padding-top: 8px;
     padding-bottom: 8px;

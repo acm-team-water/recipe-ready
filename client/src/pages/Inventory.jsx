@@ -16,6 +16,7 @@ const Inventory = () => {
     const [unit, setUnit] = useState('');
     const [weight, setWeight] = useState('');
     const [items, setItems] = useState([]);
+    const [filterText, setFilterText] = useState('');
 
     const addItem = (e) => {
         setItems(items => items.concat({
@@ -52,6 +53,10 @@ const Inventory = () => {
         setItems(newItems);
     }
 
+    const handleFilterTextChange = (filterText) => {
+        setFilterText(filterText);
+    };
+
     return (
         <div>
             <div>
@@ -77,10 +82,10 @@ const Inventory = () => {
                 />}
             </div>
             <div>
-                <SearchBar />
+                <SearchBar filterText={filterText} onFilterTextChange={handleFilterTextChange} />
             </div>
             <div>
-                <InventoryTable items={items} handleItems={handleItems} />
+                <InventoryTable items={items} handleItems={handleItems} filterText={filterText.toLowerCase()} />
             </div>
         </div>
     );

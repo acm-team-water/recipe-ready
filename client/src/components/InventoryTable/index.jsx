@@ -13,6 +13,7 @@ const InventoryTable = (props) => {
     const [newUnit, setNewUnit] = useState('');
     const [newWeight, setNewWeight] = useState('');
     const [currentEditedItemId, setCurrentEditedItemId] = useState(0);
+    const filterText = props.filterText;
 
     const handleNewItemNameChange = (e) => {
         setNewItemName(e.target.value);
@@ -55,7 +56,7 @@ const InventoryTable = (props) => {
     };
 
     return(
-        <div>
+        <div className="invtable">
             <table id="inventorytable">
                 <thead>
                     <tr>
@@ -67,7 +68,7 @@ const InventoryTable = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.items.map((item, key) => (
+                    {props.items.map((item, key) => item.itemName.toLowerCase().indexOf(filterText) === -1 ? (null) : (
                         <tr key={key}>
                             <td id="id">{key}</td>
                             <td id="item-name">{item.itemName}</td>
