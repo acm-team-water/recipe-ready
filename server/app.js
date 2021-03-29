@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 const usersRouter = require('./routes/users');
+const invRouter = require('./routes/inventory');
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/users', usersRouter);
+app.use('/inv', invRouter);
 
 dotenv.config();
 
