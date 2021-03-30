@@ -2,8 +2,8 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 
 async function genRecipes() {
-  let urlEnd = "https://www.themealdb.com/api/json/v1/1/search.php?f=";
-  let a_code = 97;
+  const urlEnd = "https://www.themealdb.com/api/json/v1/1/search.php?f=";
+  const a_code = 97;
   let arr = [];
   
   let file = fs.readFileSync('resources/recipes.json', (err,data) => {});
@@ -17,7 +17,7 @@ async function genRecipes() {
 
     let meals = json.meals;
     
-    if (meals == null)
+    if (meals === null)
       continue;
 
     for (let j = 0; j < Object.keys(meals).length; j++) {
