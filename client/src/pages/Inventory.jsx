@@ -1,29 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.css';
 import NavBar from  '../components/NavBar';
 import SearchBar from '../components/SearchBar';
 import InventoryTable from '../components/InventoryTable'
 import PopUp from '../components/PopUp'
+import API from '../API';
 
 const Inventory = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [itemName, setItemName] = useState('');
+    const [units, setUnit] = useState('');
+    const [weight, setWeight] = useState('');
+    const [items, setItems] = useState([]);
+    const [filterText, setFilterText] = useState('');
+
+    useEffect(() => {
+        API.getInventory().then((response) => {
+            setItems(response.data.items);
+            console.log(response);
+        });
+    }, []);
 
     const togglePopUp = () => {
         setIsOpen(!isOpen);
     };
 
-    const [itemName, setItemName] = useState('');
-    const [unit, setUnit] = useState('');
-    const [weight, setWeight] = useState('');
-    const [items, setItems] = useState([]);
-    const [filterText, setFilterText] = useState('');
-
     const addItem = (e) => {
-        setItems(items => items.concat({
-            itemName: itemName,
-            unit: unit,
-            weight: weight
-        }));
+        const item = {
+            name: itemName,
+            units,
+            weight, 
+        };
+
+        setItems(items => items.concat(item));
+
+        API.createItem(item).then();
         
         setItemName('');
         setUnit('');
@@ -72,7 +83,7 @@ const Inventory = () => {
                             <label htmlFor="item-name">Item Name:</label><br />
                             <input type="text" id="item-name" name="item-name" onChange={handleItemNameChange} value={itemName}></input><br />
                             <label htmlFor="unit">Quantity (units):</label><br />
-                            <input type="text" id="unit" name="unit" onChange={handleUnitChange} value={unit}></input><br />
+                            <input type="text" id="unit" name="unit" onChange={handleUnitChange} value={units}></input><br />
                             <label htmlFor="weight">Weight (g):</label><br />
                             <input type="text" id="weight" name="weight" onChange={handleWeightChange} value={weight}></input>
                             <button type="submit" value="Submit" id="popup-add">Add Item</button>

@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import API from '../../API';
 import PopUp from '../PopUp';
 import './style.css';
 
 const InventoryTable = (props) => {
     const [isOpen, setIsOpen] = useState(false);
-
-    const togglePopUp = () => {
-        setIsOpen(!isOpen);
-    };
-
     const [newItemName, setNewItemName] = useState('');
     const [newUnit, setNewUnit] = useState('');
     const [newWeight, setNewWeight] = useState('');
     const [currentEditedItemId, setCurrentEditedItemId] = useState(0);
     const filterText = props.filterText;
+
+    useEffect(() => {
+        API.getOneItem();
+    }, []);
+
+    const togglePopUp = () => {
+        setIsOpen(!isOpen);
+    };
 
     const handleNewItemNameChange = (e) => {
         setNewItemName(e.target.value);
@@ -29,23 +33,29 @@ const InventoryTable = (props) => {
 
     const onUpdate = () => {
         const updatedData = props.items.map((item, i) => i === currentEditedItemId ? {
-            itemName: newItemName,
-            unit: newUnit,
+            name: newItemName,
+            units: newUnit,
             weight: newWeight,
         }: item);
+
         props.handleItems(updatedData);
+
+        API.updateItem(updatedData.req.params.id, updatedData).then(response => {
+            props.handleItems(response.updatedData);
+        });
     };
 
     const openEditPopup = (item, key) => {
-        setNewItemName(item.itemName);
+        setNewItemName(item.name);
         setNewWeight(item.weight);
-        setNewUnit(item.unit);
+        setNewUnit(item.units);
         setCurrentEditedItemId(key);
         togglePopUp();
     }
 
     const editItem = (e) => {
         e.preventDefault();
+
         onUpdate();
         togglePopUp();
     };
@@ -68,11 +78,11 @@ const InventoryTable = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.items.map((item, key) => item.itemName.toLowerCase().indexOf(filterText) === -1 ? (null) : (
+                    {props.items.map((item, key) => item.name.toLowerCase().indexOf(filterText) === -1 ? (null) : (
                         <tr key={key}>
                             <td id="id">{key}</td>
-                            <td id="item-name">{item.itemName}</td>
-                            <td id="unit">{item.unit}</td>
+                            <td id="item-name">{item.name}</td>
+                            <td id="unit">{item.units}</td>
                             <td id="weight">{item.weight}</td>
                             <td id="action">
                                 <button type="button" id="edit" onClick={() => openEditPopup(item, key)}>Edit</button>

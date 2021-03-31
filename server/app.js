@@ -3,6 +3,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const genRecipes = require('./genRecipes');
+const cors = require('cors');
 
 const usersRouter = require('./routes/users');
 const invRouter = require('./routes/inventory');
@@ -10,6 +11,7 @@ const recRouter = require('./routes/recipes');
 
 const app = express();
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
