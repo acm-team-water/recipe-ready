@@ -4,7 +4,6 @@ import Inventory from './pages/Inventory';
 import Recipe from './pages/Recipe';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import CheckRecipe from './pages/CheckRecipe';
-import InventoryTable from './components/InventoryTable';
 
 function App() {
   return (
