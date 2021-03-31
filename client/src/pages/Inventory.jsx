@@ -8,7 +8,7 @@ import API from '../API';
 
 const Inventory = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [itemName, setItemName] = useState('');
+    const [name, setItemName] = useState('');
     const [units, setUnit] = useState('');
     const [weight, setWeight] = useState('');
     const [items, setItems] = useState([]);
@@ -27,7 +27,7 @@ const Inventory = () => {
 
     const addItem = (e) => {
         const item = {
-            name: itemName,
+            name,
             units,
             weight, 
         };
@@ -81,7 +81,7 @@ const Inventory = () => {
                         <form onSubmit={handleAddItem}>
                             <h2>Add to Inventory</h2>
                             <label htmlFor="item-name">Item Name:</label><br />
-                            <input type="text" id="item-name" name="item-name" onChange={handleItemNameChange} value={itemName}></input><br />
+                            <input type="text" id="item-name" name="item-name" onChange={handleItemNameChange} value={name}></input><br />
                             <label htmlFor="unit">Quantity (units):</label><br />
                             <input type="text" id="unit" name="unit" onChange={handleUnitChange} value={units}></input><br />
                             <label htmlFor="weight">Weight (g):</label><br />
