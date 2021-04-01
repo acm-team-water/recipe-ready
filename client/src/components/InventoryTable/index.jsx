@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import API from '../../API';
 import PopUp from '../PopUp';
 import './style.css';
 
 const InventoryTable = (props) => {
     const [isOpen, setIsOpen] = useState(false);
-
-    const togglePopUp = () => {
-        setIsOpen(!isOpen);
-    };
-
     const [newItemName, setNewItemName] = useState('');
     const [newUnit, setNewUnit] = useState('');
     const [newWeight, setNewWeight] = useState('');
     const [currentEditedItemId, setCurrentEditedItemId] = useState(0);
+    const filterText = props.filterText;
+
+    const togglePopUp = () => {
+        setIsOpen(!isOpen);
+    };
 
     const handleNewItemNameChange = (e) => {
         setNewItemName(e.target.value);
@@ -26,36 +27,43 @@ const InventoryTable = (props) => {
         setNewWeight(e.target.value);
     };
 
-    const onUpdate = () => {
+    const onUpdate = (item) => {
         const updatedData = props.items.map((item, i) => i === currentEditedItemId ? {
-            itemName: newItemName,
-            unit: newUnit,
+            name: newItemName,
+            units: newUnit,
             weight: newWeight,
         }: item);
+
         props.handleItems(updatedData);
+        
+        props.items.map((item, i) => i === currentEditedItemId ? 
+        API.updateItem(item._id, updatedData[currentEditedItemId]).then(): null);
     };
 
     const openEditPopup = (item, key) => {
-        setNewItemName(item.itemName);
+        setNewItemName(item.name);
         setNewWeight(item.weight);
-        setNewUnit(item.unit);
+        setNewUnit(item.units);
         setCurrentEditedItemId(key);
         togglePopUp();
     }
 
-    const editItem = (e) => {
+    const editItem = (e, item) => {
         e.preventDefault();
-        onUpdate();
+
+        onUpdate(item);
         togglePopUp();
     };
 
-    const deleteItem = (key) => {
+    const deleteItem = (key, item) => {
         let data = props.items.filter((item, i) => i !== key)
         props.handleItems(data);
+
+        API.removeItem(item._id).then();
     };
 
     return(
-        <div>
+        <div className="invtable">
             <table id="inventorytable">
                 <thead>
                     <tr>
@@ -67,17 +75,17 @@ const InventoryTable = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.items.map((item, key) => (
+                    {props.items.map((item, key) => item.name.toLowerCase().indexOf(filterText) === -1 ? (null) : (
                         <tr key={key}>
                             <td id="id">{key}</td>
-                            <td id="item-name">{item.itemName}</td>
-                            <td id="unit">{item.unit}</td>
+                            <td id="item-name">{item.name}</td>
+                            <td id="unit">{item.units}</td>
                             <td id="weight">{item.weight}</td>
                             <td id="action">
                                 <button type="button" id="edit" onClick={() => openEditPopup(item, key)}>Edit</button>
-                                {isOpen && <PopUp 
+                                {isOpen && <PopUp
                                     content = {<>
-                                        <form className="edit-item" onSubmit={(event) => {editItem(event)}}>
+                                        <form className="edit-item" onSubmit={(event) => {editItem(event, item)}}>
                                             <h2>Edit Inventory</h2>
                                             <label htmlFor="item-name">Item Name:</label><br />
                                             <input type="text" id="item-name" name="item-name" onChange={handleNewItemNameChange} value={newItemName}></input><br />
@@ -90,10 +98,10 @@ const InventoryTable = (props) => {
                                     </>}
                                     handleClose = {togglePopUp}
                                 />}
-                                <button type="button" id="delete" onClick={() => deleteItem(key)}>Delete</button>
+                                <button type="button" id="delete" onClick={() => deleteItem(key, item)}>Delete</button>
                             </td>
-                        </tr> 
-                    ))}                   
+                        </tr>
+                    ))}                  
                 </tbody>
             </table>
         </div>

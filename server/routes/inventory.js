@@ -37,7 +37,7 @@ router.post('/', function (req, res) {
 
 // PUT
 router.put('/:id', function (req, res) {
-  Item.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
+  Item.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, result) {
     if (err) return res.json({ error: err })
     res.json({ error: null, item: result });
   });
