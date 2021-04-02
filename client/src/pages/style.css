@@ -62,19 +62,22 @@ input:focus, button:focus {
     margin-bottom: 10px;
 }
 
+.left {
+    float: left;
+    margin-left: 100px;
+}
+
 figcaption {
-    text-align: left;
-    margin-top: 60px;
+    text-align: center;
+    margin-top: 70px;
     font-size: 30px;
-    margin-left: 8%;
-    padding-bottom: 24px;
+    margin-bottom: 45px;
+    width: 340px;
 }
 
 img {
-    height: 36%;
-    width: 25%;
-    float: left;
-    margin-left: 8%;
+    height: 320px;
+    width: 320px;
     border: solid 1px black;
 }
 
@@ -89,8 +92,8 @@ img {
 .ingredient {
     float: right;
     height: 460px;
-    width: 48%;
-    margin-top: -54px;
+    width: 600px;
+    margin-top: 80px;
     margin-right: 8%;
     border-top: 3px solid #58A187;
     border-bottom: 3px solid #58A187;
@@ -99,10 +102,10 @@ img {
 
 .ingredient h2 {
     font-size: 28px;
-    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
-li{
+li {
     font-size: 20px;
     color: #505050;
     padding-bottom: 10px;
@@ -114,4 +117,10 @@ li{
     font-size: 22px;
     padding-left: 20px;
     padding-right: 20px;
+    
+}
+
+#ingredientlist {
+    max-height: 350px;
+    overflow: scroll;
 }

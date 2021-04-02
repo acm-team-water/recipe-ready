@@ -17,6 +17,12 @@ const API = {
     },
     removeItem: function (id) {
         return axios.delete(`${server}/inv/${id}`);
+    },
+    getAllRecipes: function () {
+        return axios.get(`${server}/recipes`);
+    },
+    getOneRecipe: function (id) {
+        return axios.get(`${server}/recipes/${id}`);
     }
 }
 
