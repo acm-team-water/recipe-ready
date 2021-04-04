@@ -4,7 +4,7 @@ import API from '../../API';
 import './style.css';
 
 const RecipeTable = (props) => {
-    const filterText = props.filterText;
+    const { filterText } = props;
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
