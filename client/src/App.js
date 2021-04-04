@@ -13,7 +13,7 @@ function App() {
           <Redirect from="/" to="/inventory" exact></Redirect>
           <Route path="/inventory" exact component={Inventory}></Route>
           <Route path="/recipe" exact component={Recipe}></Route>
-          <Route path="/check" exact component={CheckRecipe}></Route>
+          <Route path="/check/:id" exact component={CheckRecipe}></Route>
         </Switch>
       </div>
     </Router>
