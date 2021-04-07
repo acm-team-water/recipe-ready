@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import API from '../../API';
 import PopUp from '../PopUp';
 import './style.css';
@@ -38,6 +38,7 @@ const InventoryTable = (props) => {
         
         props.items.map((item, i) => i === currentEditedItemId ? 
         API.updateItem(item._id, updatedData[currentEditedItemId]).then(): null);
+        sessionStorage.setItem('items', JSON.stringify(updatedData));
     };
 
     const openEditPopup = (item, key) => {
@@ -60,6 +61,7 @@ const InventoryTable = (props) => {
         props.handleItems(data);
 
         API.removeItem(item._id).then();
+        sessionStorage.removeItem('items');
     };
 
     return(

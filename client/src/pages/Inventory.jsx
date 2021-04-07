@@ -14,11 +14,14 @@ const Inventory = () => {
     const [items, setItems] = useState([]);
     const [filterText, setFilterText] = useState('');
 
+    sessionStorage.setItem('items', JSON.stringify(items));
+
     useEffect(() => {
         API.getInventory().then((response) => {
             setItems(response.data.items);
             console.log(response);
         });
+        sessionStorage.setItem('items', JSON.stringify(items));
     }, []);
 
     const togglePopUp = () => {
@@ -32,7 +35,7 @@ const Inventory = () => {
             weight, 
         };
 
-        setItems(items => items.concat(item));
+        setItems(items => items.concat(item))
 
         API.createItem(item).then();
         
