@@ -7,7 +7,7 @@
 
 .title {
     color: white;
-    margin-left: 28px;
+    margin-left: 30px;
 }
 
 h2 {
@@ -17,12 +17,16 @@ h2 {
 
 .nav-buttons {
     font-size: 18px;
-    margin-right: 28px;
+    margin-right: 45px;
 }
 
 .nav-buttons a {
-    padding-left: 40px;
+    padding-left: 45px;
     padding-bottom: 40px;
     text-decoration: none;
     color: white;
+}
+
+.nav-buttons a:hover {
+    color: #F0F0F0;
 }
