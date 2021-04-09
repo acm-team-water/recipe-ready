@@ -64,7 +64,8 @@ input:focus, button:focus {
 
 .left {
     float: left;
-    margin-left: 100px;
+    margin-left: 8%;
+    width: 33%;
 }
 
 figcaption {
@@ -72,12 +73,11 @@ figcaption {
     margin-top: 70px;
     font-size: 30px;
     margin-bottom: 45px;
-    width: 340px;
 }
 
 img {
-    height: 320px;
-    width: 320px;
+    height: 100%;
+    width: 100%;
     border: solid 1px black;
 }
 
@@ -92,9 +92,9 @@ img {
 .ingredient {
     float: right;
     height: 460px;
-    width: 600px;
+    width: 45%;
     margin-top: 80px;
-    margin-right: 120px;
+    margin-right: 8%;
     border-top: 3px solid #58A187;
     border-bottom: 3px solid #58A187;
     text-align: left;
@@ -102,7 +102,8 @@ img {
 
 .ingredient h2 {
     font-size: 26px;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
+    width: 45%;
 }
 
 li {
@@ -123,15 +124,16 @@ li {
 #ingredientlist {
     max-height: 350px;
     overflow: scroll;
-    width: 300px;
+    width: 50%;
 }
 
 .missing {
     position: absolute;
-    right: 0;
+    left: 0;
     top: 0;
     margin-top: 139px;
-    margin-right: 120px;
+    margin-left: 72%;
+    width: 20%;
 }
 
 .missing h2, .missing li {
@@ -141,11 +143,10 @@ li {
 
 .missing h2 {
     font-size: 26px;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
 }
 
 #missinglist {
     max-height: 350px;
     overflow: scroll;
-    width: 300px;
 }
