@@ -1,3 +1,48 @@
+.left-home {
+    float: left;
+    width: 49%;
+    height: 100vh;
+    background-color: #58A187;
+}
+
+.left-home h1 {
+    color: white;
+    font-size: 50px;
+    margin-top: 32%;
+}
+
+.left-home h2 {
+    color: #F0F0F0;
+    font-size: 24px;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.right-home {
+    float: right;
+    background: url('../food.png') no-repeat;
+    width: 50%;
+    height: 100vh;
+}
+
+#start {
+    font-size: 22px;
+    color: black;
+    background-color: #E5E5E5;
+    border: 3px solid white;
+    border-radius: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 48px;
+    margin-top: 10%;
+}
+
+#start:hover {
+    background-color: #c4c4c4;
+}
+
 h1 {
     margin-top: 40px;
     font-weight: normal;

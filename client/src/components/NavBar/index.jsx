@@ -6,7 +6,7 @@ const NavBar = (props) => {
     return (
         <div id="navbar">
             <div className="title">
-                <h2>Recipe Ready</h2>
+                <Link to="/home"><h2>Recipe Ready</h2></Link>
             </div>
             <div className="nav-buttons">
                 <Link to="/inventory">Inventory</Link>
